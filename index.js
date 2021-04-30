@@ -53,6 +53,14 @@ const main = async() => {
 	console.log("Exchange rate")
 	console.log(exchangeRateCurrent + ' ETH = 1 cETH');
 
+	// Retirar ETH
+	const ethAmount = web3.utils.toWei(balanceOfUnderlying).toString();
+	await compoundCEthContract.methods.redeemUnderlying(ethAmount).send({
+		from: myAddressWallet,
+		gasLimit: web3.utils.toHex(200000),
+		gasPrice: web3.utils.toHex(20000000000)
+	});
+
 }
 
 main();
